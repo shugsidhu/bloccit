@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 		resources :sponsored_posts, except: [:index]
 	end
 
+	resources :questions
+
 	get 'about' => 'welcome#about'
 
   root 'welcome#index'

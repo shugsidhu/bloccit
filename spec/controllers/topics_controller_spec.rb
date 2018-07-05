@@ -1,11 +1,3 @@
-0
-0 0 7022Andre/bloccit
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
-bloccit/spec/controllers/topics_controller_spec.rb
-6cbec2a  on May 14, 2017
-@7022Andre 7022Andre Checkpoint 21 complete
-
-124 lines (100 sloc)  3.35 KB
 require 'rails_helper'
 
 RSpec.describe TopicsController, type: :controller do

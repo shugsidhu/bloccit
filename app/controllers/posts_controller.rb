@@ -1,11 +1,8 @@
 class PostsController < ApplicationController
-  def show
-    @post = Post.find(params[:id])
-  end
 
   def new
     @topic = Topic.find(params[:topic_id])
-  	@post = Post.new
+    @post = Post.new
   end
 
   def create
@@ -13,15 +10,20 @@ class PostsController < ApplicationController
     @post.title = params[:post][:title]
     @post.body = params[:post][:body]
     @topic = Topic.find(params[:topic_id])
-    @post.topic = @topic
 
+    @post.topic = @topic
     if @post.save
-      flash[:notice] = "Post was saved."
+      flash[:notice] = "Post was saved!"
+ 
       redirect_to [@topic, @post]
     else
       flash.now[:alert] = "There was an error saving the post. Please try again."
       render :new
     end
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   def edit
@@ -35,6 +37,7 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:notice] = "Post was updated."
+
       redirect_to [@post.topic, @post]
     else
       flash.now[:alert] = "There was an error saving the post. Please try again."
@@ -45,12 +48,12 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     if @post.destroy
-      flash[:notice] = "Post was deleted."
-      redirect_to @post.topic
+      flash[:notice] = "\"#{@post.title}\" was deleted successfully."
+
     else
-      flash.now[:alert] = "There was an error deleting the post. Please try again."
+      flash.now[:alert] = "There was an error deleting the post."
       render :show
     end
-
   end
+
 end
