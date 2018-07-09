@@ -1,3 +1,3 @@
 class SponsoredPost < ApplicationRecord
-  belongs_to :topic
+  belongs_to :topic, dependent: :destroy
 end
