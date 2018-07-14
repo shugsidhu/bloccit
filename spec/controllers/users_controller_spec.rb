@@ -1,5 +1,5 @@
 
-require 'rails_helper'
+require 'rails_helper
 
 RSpec.describe UsersController, type: :controller do
 #this is creating a hash of attr. to test through spec
