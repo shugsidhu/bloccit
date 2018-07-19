@@ -1,12 +1,10 @@
 class PostsController < ApplicationController
 
-  def show
-    @post = Post.find(params[:id])
-  end
+  before_action :require_sign_in, except: :show
 
   def new
     @topic = Topic.find(params[:topic_id])
-  	@post = Post.new
+    @post = Post.new
   end
 
   def create
@@ -15,14 +13,18 @@ class PostsController < ApplicationController
     @post.body = params[:post][:body]
     @topic = Topic.find(params[:topic_id])
     @post.topic = @topic
-
+    @post.user = current_user
     if @post.save
-      flash[:notice] = "Post was saved."
+      flash[:notice] = "Post was saved!"
       redirect_to [@topic, @post]
     else
       flash.now[:alert] = "There was an error saving the post. Please try again."
       render :new
     end
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   def edit
@@ -46,12 +48,12 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     if @post.destroy
-      flash[:notice] = "Post was deleted."
+      flash[:notice] = "\"#{@post.title}\" was deleted successfully."
       redirect_to @post.topic
     else
-      flash.now[:alert] = "There was an error deleting the post. Please try again."
+      flash.now[:alert] = "There was an error deleting the post."
       render :show
     end
-
   end
+
 end
