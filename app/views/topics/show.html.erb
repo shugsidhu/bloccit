@@ -15,6 +15,7 @@
  <hr />
 
  <% @topic.posts.each do |post| %>
+ <%= render partial: 'votes/voting', locals: { post: post } %>
         <div class="media list">
           <div class="media-body">
             <h4 class="media-heading">
