@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+   </head>
+   <body>
+     <h1>You are now following "<%= @post.title %>".</h1>
+     <p>You will now be notified of all interactions with this post. If, at any time, you want to stop receiving notifications of this post. Simply unfavorite your post.</p>
+      <p>
+       <%= link_to "View Post", topic_post_url(@post.topic, @post) %>
+     </p>
+   </body>
+ </html>

@@ -14,4 +14,4 @@ class Comment < ApplicationRecord
        FavoriteMailer.new_comment(favorite.user, post, self).deliver_now
      end
    end
-end
+iend
