@@ -2,11 +2,9 @@
    <div class="col-md-8">
      <div class="media">
        <br />
- // #10
        <% avatar_url = @user.avatar_url(128) %>
        <% if avatar_url %>
          <div class="media-left">
- // #11
            <%= image_tag avatar_url, class: 'media-object' %>
          </div>
        <% end %>
@@ -23,7 +21,16 @@
 
  // #12
  <h2>Posts</h2>
- <%= render @user.posts %>
+ <% if @user.posts.count == 0 %>
+    <h5><%= no_posts(@user) %></h5>
+  <%else%>
+    <%= render @user.posts %>
+ <% end %>
+
 
  <h2>Comments</h2>
- <%= render @user.comments %>
+ <% if @user.comments.count == 0 %>
+      <h5><%= no_comments(@user) %></h5>
+    <%else%>
+      <%= render @user.comments %>
+   <% end %
